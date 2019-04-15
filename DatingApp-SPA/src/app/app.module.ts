@@ -36,6 +36,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { registerLocaleData } from '@angular/common';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import localeDe from '@angular/common/locales/de';
+import { ListsResolver } from './_resolvers/lists.resolver';
 
 registerLocaleData(localeDe);
 
@@ -89,7 +90,8 @@ export function tokenGetter() {
       UserService,
       MemberDetailResolver,
       MemberListResolver,
-      MemberEditResolver
+      MemberEditResolver,
+      ListsResolver
    ],
    bootstrap: [
       AppComponent
