@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -40,9 +41,15 @@ namespace DatingApp.API.Controllers
       }
 
       var users = await _repo.GetUsers(userParams);
+      var likees = await _repo.GetUserLikes(currentUserId, false);
+      var usersToReturn = new List<UserForListDto>(); // _mapper.Map<IEnumerable<UserForListDto>>(users);
 
-      var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
-
+      foreach(var user in users) {
+        var userToReturn = _mapper.Map<UserForListDto>(user);
+        userToReturn.IsLiked = likees.Contains(userToReturn.Id);
+        usersToReturn.Add(userToReturn);
+      }
+     
       Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
 
       return Ok(usersToReturn);
