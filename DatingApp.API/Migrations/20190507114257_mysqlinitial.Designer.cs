@@ -9,14 +9,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatingApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190415124420_MessagesEntityAdded")]
-    partial class MessagesEntityAdded
+    [Migration("20190507114257_mysqlinitial")]
+    partial class mysqlinitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028");
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("DatingApp.API.Models.Like", b =>
                 {
